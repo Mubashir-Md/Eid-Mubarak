@@ -17,7 +17,7 @@ document.getElementById("download").addEventListener("click", async () => {
 
   const name = document.getElementById('userInput').value;
 
-  const response = await fetch(`http://localhost:3000/screenshot?name=${encodeURIComponent(name)}`);
+  const response = await fetch(`https://eid-mubarak.onrender.com/screenshot?name=${encodeURIComponent(name)}`);
 
   const blob = await response.blob();
 
@@ -39,15 +39,13 @@ document.getElementById("download").addEventListener("click", async () => {
 // share on socials
 
 const whatsappShare = async () => {
-  const response = await fetch('http://localhost:3000/screenshot')
+  const response = await fetch('https://eid-mubarak.onrender.com/screenshot')
   const blob = await response.blob();
 
   const reader = new FileReader();
   reader.readAsDataURL(blob);
-  reader.onloadend = function(){
-    const base64 = reader.result;
-    
-  }
+  await new Promise(resolve => reader.onload = resolve);
+  const base64data = reader.result.split(',')[1];
 
   const imgUrl = URL.createObjectURL(blob);
 
@@ -60,4 +58,4 @@ const whatsappShare = async () => {
 
 }
 
-document.getElementById("whatsapp").addEventListener("click", whatsappShare)
+// document.getElementById("whatsapp").addEventListener("click", whatsappShare)

@@ -47,7 +47,7 @@ div.msg h1 {
 }
 
 div.msg h3 {
-  font-size: 6vmin;
+  font-size: 8vmin;
   /* font-family: 'Arizonia', cursive; */
   /* font-family: 'Fondamento', cursive; */
   /* font-family: 'Great Vibes', cursive; */
@@ -60,7 +60,7 @@ div.msg h3 {
 div.msg p {
   margin: 2%;
   padding: 1%;
-  font-size: 4vmin;
+  font-size: 5vmin;
   /* font-family: 'Arizonia', cursive; */
   /* font-family: 'Fondamento', cursive; */
   font-family: 'Great Vibes', cursive;
@@ -79,8 +79,8 @@ div.eid {
 div.moon {
   margin: 2% auto;
   padding: 2%;
-  height: 10rem;
-  width: 10rem;
+  height: 9rem;
+  width: 9rem;
   box-shadow: -20px 20px 0 5px;
   border-radius: 50%;
 
@@ -162,4 +162,68 @@ footer {
 
 footer a {
   color: #FCD48F;
+}
+
+@media (min-width: 280px) and (max-width: 540px){
+  div.whole{
+    width: 80vw;
+    height: 90vh;
+  }
+  div.eid{
+    padding: 2%;
+  }
+  div.moon{
+    height: 8rem;
+    width: 8rem;
+    margin: 1% auto;
+    padding: 2%;
+  }
+  div.msg{
+    margin: 2%;
+  }
+  div.edit input{
+    width: 50%;
+  }
+}
+@media (min-width: 541px) and (max-width: 900px){
+  div.whole{
+    width: 60vw;
+    height: 90vh;
+  }
+  div.eid{
+    padding: 2%;
+  }
+  div.moon{
+    height: 8rem;
+    width: 8rem;
+    margin: 1% auto;
+    padding: 2%;
+  }
+  div.msg{
+    margin: 2%;
+  }
+  div.edit input{
+    width: 50%;
+  }
+}
+@media (min-width: 901px) and (max-width: 1200px){
+  div.whole{
+    width: 40vw;
+    height: 90vh;
+  }
+  div.eid{
+    padding: 2%;
+  }
+  div.moon{
+    height: 9rem;
+    width: 9rem;
+    margin: 1% auto;
+    padding: 2%;
+  }
+  div.msg{
+    margin: 2%;
+  }
+  div.edit input{
+    width: 50%;
+  }
 }
