@@ -7,6 +7,10 @@ const app = express();
 app.use(express.static('public'));
 app.use(cors());
 
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.get('/screenshot', async (req,res) => {
 
   const name = req.query.name;
@@ -15,7 +19,7 @@ app.get('/screenshot', async (req,res) => {
   const page = await browser.newPage();
 
   await page.setViewport({ width: 1280, height: 720 });
-  const website_url = `http://127.0.0.1:5500/eid.html?name=${name}`;
+  const website_url = `http://localhost:3000?name=${name}`;
 
   await page.goto(website_url);
 
