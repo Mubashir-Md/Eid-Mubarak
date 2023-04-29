@@ -15,7 +15,10 @@ app.get('/screenshot', async (req,res) => {
 
   const name = req.query.name || 'Your name';
   console.log({name})
-  const browser = await puppeteer.launch({headless: "new"});
+  const browser = await puppeteer.launch({
+    headless: "new",
+    ignoreDefaultArgs: ['--disable-extensions']
+  });
   const page = await browser.newPage();
 
   await page.setViewport({ width: 1280, height: 720 });
