@@ -17,20 +17,26 @@ document.getElementById("download").addEventListener("click", async () => {
 
   const name = document.getElementById('userInput').value;
 
-  const response = await fetch(`https://eid-mubarak.onrender.com/screenshot?name=${encodeURIComponent(name)}`);
+  try {
 
-  const blob = await response.blob();
+    const response = await fetch(`https://eid-mubarak.onrender.com/screenshot?name=${encodeURIComponent(name)}`);
 
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'screenshot.png';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+    const blob = await response.blob();
 
-  console.log(blob);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'screenshot.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    console.log(blob);
+  }
+  catch(error){
+    console.log(error);
+  }
 });
 
 

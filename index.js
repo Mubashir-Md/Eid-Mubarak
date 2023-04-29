@@ -13,13 +13,13 @@ app.get('/', function(req, res) {
 
 app.get('/screenshot', async (req,res) => {
 
-  const name = req.query.name;
+  const name = req.query.name;z
   console.log({name})
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
   await page.setViewport({ width: 1280, height: 720 });
-  const website_url = `http://localhost:3000?name=${name}`;
+  const website_url = `https://eid-mubarak.onrender.com?name=${name}`;
 
   await page.goto(website_url);
 
