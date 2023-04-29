@@ -7,37 +7,40 @@ const app = express();
 app.use(express.static('public'));
 app.use(cors());
 
-app.get('/', function(req, res) {
+app.get('/', function (res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/screenshot', async (req,res) => {
+app.get('/screenshot', async (req, res) => {
 
   const name = req.query.name || 'Your name';
-  console.log({name})
+  console.log({ name })
   const browser = await puppeteer.launch({
     headless: "new",
     ignoreDefaultArgs: ['--disable-extensions']
   });
-  const page = await browser.newPage();
+  try {
+    const page = await browser.newPage();
 
-  await page.setViewport({ width: 1280, height: 720 });
-  const website_url = `https://eid-mubarak.onrender.com?name=${name}`;
+    await page.setViewport({ width: 1280, height: 720 });
+    const website_url = `https://eid-mubarak.onrender.com?name=${name}`;
 
-  await page.goto(website_url);
+    await page.goto(website_url);
 
-  const html = await page.content();
-  const updatedHtml = html.replace(/Your name/g, name);
-  await page.setContent(updatedHtml);
+    const html = await page.content();
+    const updatedHtml = html.replace(/Your name/g, name);
+    await page.setContent(updatedHtml);
 
-  const selector = '#area'
-  await page.waitForSelector(selector);
-  const element = await page.$(selector); 
+    const selector = '#area'
+    await page.waitForSelector(selector);
+    const element = await page.$(selector);
 
-  const ss = await element.screenshot({ type: 'png' });
-
-  await browser.close();
-
+    const ss = await element.screenshot({ type: 'png' });
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await browser.close();
+  }
   res.setHeader('Content-Type', 'image/png');
   res.setHeader('Content-Disposition', 'attachment: filename=screenshot.png')
   res.send(ss)
@@ -46,7 +49,7 @@ app.get('/screenshot', async (req,res) => {
 
 
 
-app.listen(3000, ()=>{
+app.listen(3000, () => {
   console.log("Server is listening at port 3000")
 });
 
