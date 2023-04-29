@@ -32,7 +32,7 @@ document.getElementById("download").addEventListener("click", async () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    console.log(blob);
+    console.log(blob);  
   }
   catch(error){
     console.log(error);

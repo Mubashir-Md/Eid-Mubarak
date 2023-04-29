@@ -13,9 +13,9 @@ app.get('/', function(req, res) {
 
 app.get('/screenshot', async (req,res) => {
 
-  const name = req.query.name;z
+  const name = req.query.name || 'Your name';
   console.log({name})
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: "new"});
   const page = await browser.newPage();
 
   await page.setViewport({ width: 1280, height: 720 });
