@@ -18,7 +18,6 @@ app.get('/screenshot', async (req, res) => {
   const name = req.query.name || 'Your name';
   console.log({ name })
   const browser = await puppeteer.launch({
-    headless: "new",
     args: [
       "--disable-setuid-sandbox",
       "--no-sandbox",
