@@ -32,7 +32,6 @@ document.getElementById("download").addEventListener("click", async () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    console.log(blob);  
   }
   catch(error){
     console.log(error);
@@ -58,7 +57,6 @@ const whatsappShare = async () => {
   const text = "Eid Mubarak \nMay Allah bless you and your family.\n Want to make a similar one, checkout: ";
 
   const url = `whatsapp://send?text=${encodeURIComponent(text)}&` + `?image=${encodeURIComponent(imgUrl)}`;
-  console.log(url)
   window.open(url);
 
 
