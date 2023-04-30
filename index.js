@@ -26,8 +26,8 @@ app.get('/screenshot', async (req, res) => {
     ],
     executablePath:
       process.env.NODE_ENV === "production"
-      ? process.env.PUPPETEER_EXECUTABLE_PATH
-      : puppeteer.executablePath()
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath()
   });
   try {
     const page = await browser.newPage();
@@ -46,14 +46,15 @@ app.get('/screenshot', async (req, res) => {
     const element = await page.$(selector);
 
     const ss = await element.screenshot({ type: 'png' });
+    res.setHeader('Content-Type', 'image/png');
+    res.setHeader('Content-Disposition', 'attachment: filename=screenshot.png')
+    res.send(ss)
   } catch (err) {
     console.log(err);
   } finally {
     await browser.close();
   }
-  res.setHeader('Content-Type', 'image/png');
-  res.setHeader('Content-Disposition', 'attachment: filename=screenshot.png')
-  res.send(ss)
+
 
 });
 
